@@ -1,0 +1,90 @@
+@import "tailwindcss";
+
+@theme {
+  --color-void-black: #020205;
+  --color-nebula-blue: #0ea5e9;
+  --color-aurora-teal: #14b8a6;
+  --color-lunar-gold: #fbbf24;
+  --color-glass-bg: rgba(8, 8, 12, 0.65);
+  --color-glass-border: rgba(255, 255, 255, 0.08);
+  --font-sans: "Space Grotesk", "Inter", sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+}
+
+body {
+  @apply bg-slate-950 text-slate-100 font-sans m-0 p-0 overflow-x-hidden;
+}
+
+@layer utilities {
+  .glass-card {
+    background: var(--color-glass-bg);
+    border: 1px solid var(--color-glass-border);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+  }
+}
+
+/* Retaining previous Moon Canvas Background Styles */
+.moon-canvas-bg {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: -2;
+  pointer-events: none;
+  display: block;
+}
+
+.moon-vignette {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: -1;
+  pointer-events: none;
+  background: radial-gradient(
+    circle at center,
+    rgba(0, 0, 0, 0) 0%,
+    rgba(0, 0, 0, 0.4) 50%,
+    rgba(0, 0, 0, 0.9) 100%
+  );
+}
+
+.moon-loader-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 9999;
+  background-color: #050508;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: system-ui, sans-serif;
+  color: #fff;
+}
+
+.moon-loader-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+
+.moon-spinner {
+  width: 40px;
+  height: 40px;
+  border: 3px solid rgba(255, 255, 255, 0.1);
+  border-radius: 50%;
+  border-top-color: #a78bfa;
+  animation: moon-spin 0.8s linear infinite;
+}
+
+@keyframes moon-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
