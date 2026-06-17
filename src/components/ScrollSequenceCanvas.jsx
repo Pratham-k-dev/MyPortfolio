@@ -278,8 +278,9 @@ export function ScrollSequenceCanvas({
   }, [totalFrames, currentFrameRef, targetFrameRef, animationFrameRef, isLoaded]);
 
 return (
+  //fixed inset-0
   <div
-    className={`fixed inset-0 w-full h-full pointer-events-none transition-opacity duration-1000 ${
+    className={`fixed top-0 w-full h-screen pointer-events-none transition-opacity duration-1000 ${
       isLoaded ? 'opacity-100' : 'opacity-0'
     }`}
     style={{ zIndex: z }}

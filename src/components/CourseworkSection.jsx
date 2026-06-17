@@ -192,23 +192,7 @@ const projects = [
 
 export function CourseworkSection() {
   const containerRef = useRef(null);
-  const [isActive, setIsActive] = useState(false);
-const ref = useRef(null);
 
-useEffect(() => {
-  const observer = new IntersectionObserver(
-    ([entry]) => {
-      setIsActive(entry.isIntersecting);
-    },
-    { threshold: 0.5 }
-  );
-
-  if (ref.current) {
-    observer.observe(ref.current);
-  }
-
-  return () => observer.disconnect();
-}, []);
   return (
     <section
       ref={containerRef}
@@ -216,7 +200,6 @@ useEffect(() => {
       style={{ height: '500vh' }}
     >
       {/* Background Animation */}
-      
       <ScrollSequenceCanvas
         totalFrames={35}
         directory="/rocket"
@@ -224,9 +207,8 @@ useEffect(() => {
         extension="jpg"
         pad={3}
         containerRef={containerRef}
-        z={isActive? 20 :0}
+        z={0}
       />
-      
 
       {/* Overlay Content */}
       <div className="absolute inset-0 z-10">

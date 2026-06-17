@@ -1,4 +1,7 @@
 /* Full-screen sections to create scroll length */
+html {
+  scroll-behavior: smooth;
+}
 .scroll-container {
   position: relative;
   width: 100%;

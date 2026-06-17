@@ -1,35 +1,48 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import Lenis from 'lenis';
 import './index.css';
-import { HeroSection } from './components/HeroSection';
-// import { SaturnStack } from './components/SaturnStack';
-import { CourseworkSection } from './components/CourseworkSection';
-import { ProjectsSection } from './components/ProjectsSection';
+import { Main } from './components/narrative/Main3';
+import { RocketSection } from './components/narrative/RocketSection';
 import Stack from './components/Stack';
-import { Last } from './components/Last';
-import Main from './components/Main';
+import Navbar from './components/Navbar';
+import Footer from './components/Footer';
 function App() {
+  useEffect(() => {
+    const lenis = new Lenis({
+      duration: 1.2,
+      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)), // https://www.desmos.com/calculator/brs54l4xou
+      direction: 'vertical',
+      gestureDirection: 'vertical',
+      smooth: true,
+      mouseMultiplier: 1,
+      smoothTouch: false,
+      touchMultiplier: 2,
+      infinite: false,
+    });
+
+    function raf(time) {
+      lenis.raf(time);
+      requestAnimationFrame(raf);
+    }
+
+    requestAnimationFrame(raf);
+
+    return () => {
+      lenis.destroy();
+    };
+  }, []);
+
   return (
+    <>
+    <Navbar />
     <main className="w-full min-h-screen bg-void-black text-white selection:bg-nebula-blue/30 overflow-x-hidden">
-      {/* <HeroSection /> */}
-      {/* <SaturnStack /> */}
-      <Main/>
-      <CourseworkSection />
-      {/* <ProjectsSection /> */}
-      <Stack/>
-      {/* <Last/> */}
+      <section ><Main /></section>
+      <section ><RocketSection /></section>
+      <section ><Stack /></section>
       {/* Contact Footer */}
-      <footer className="relative py-20 bg-void-black flex items-center justify-center border-t border-white/5 z-10">
-        <div className="glass-card px-10 py-12 rounded-2xl text-center max-w-xl mx-4">
-          <h2 className="text-3xl font-bold mb-4">Ready to Launch?</h2>
-          <p className="text-slate-400 mb-8">
-            Whether you have a question or just want to say hi, my inbox is always open. I'll try my best to get back to you!
-          </p>
-          <button className="px-8 py-3 bg-aurora-teal hover:bg-teal-400 text-void-black font-semibold rounded-lg transition-colors shadow-[0_0_20px_rgba(20,184,166,0.3)]">
-            Open Comm Channel
-          </button>
-        </div>
-      </footer>
     </main>
+      <Footer/>
+    </>
   );
 }
 

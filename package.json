@@ -12,6 +12,7 @@
   "dependencies": {
     "@tailwindcss/vite": "^4.3.0",
     "clsx": "^2.1.1",
+    "lenis": "^1.3.23",
     "lucide-react": "^1.16.0",
     "motion": "^12.40.0",
     "prop-types": "^15.8.1",
