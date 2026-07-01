@@ -69,24 +69,15 @@ const skillSections = [
 ];
 
 const achievements = [
-  {
-    id: 1,
-    platform: "JEE Main",
-    value: 99.28,
-    decimals: 2,
-    unit: "percentile",
-    desc: "Consistent prep and strong analytical problem-solving across Maths, Physics & Chemistry.",
-    link: null,
-    color: "cyan",
-  },
+  
   {
     id: 2,
     platform: "LeetCode",
     value: 250,
     decimals: 0,
     unit: "+ solved",
-    points: ["Medium-difficulty focus", "Data Structures & Algorithms", "Consistent problem streak"],
-    link: "https://leetcode.com/u/Pratham_Kulkarni_/",
+    points: [ "Data Structures & Algorithms","Arrays,DP, Graphs,Trees", "Consistent problem streak"],
+    link: "https://leetcode.com/u/pratham_coder/",
     color: "yellow",
   },
   {
@@ -98,7 +89,7 @@ const achievements = [
     badge: "Pupil",
     badgeColor: "text-blue-400",
     points: ["Active contest participation", "Steady rating growth"],
-    link: "https://codeforces.com/profile/pratham_kulkarni",
+    link: "https://codeforces.com/profile/Pratham_k314",
     color: "blue",
   },
   {
@@ -109,8 +100,8 @@ const achievements = [
     unit: "max rating",
     badge: "★★★ 3-Star",
     badgeColor: "text-amber-400",
-    points: ["Ongoing contest activity", "Algorithmic challenges"],
-    link: "https://codechef.com/users/pratham_kulkarni",
+    points: ["Improved problem-solving under time pressure", " greedy, implementation and constructive problems"],
+    link: "https://www.codechef.com/users/cry_map_60",
     color: "amber",
   },
   {
@@ -122,6 +113,16 @@ const achievements = [
     points: ["Full-stack applications", "AI / RAG pipelines", "Open-source contributions"],
     link: null,
     color: "emerald",
+  },
+  {
+    id: 1,
+    platform: "JEE Main",
+    value: 99.28,
+    decimals: 2,
+    unit: "percentile",
+    desc: "Consistent prep and strong analytical problem-solving across Maths, Physics & Chemistry.",
+    link: null,
+    color: "cyan",
   },
 ];
 
@@ -151,7 +152,7 @@ function TerminalCursor() {
 const roles = [
   "Full Stack Developer",
   "Problem Solver",
-  "AI Enthusiast",
+  "GenAI Engineer",
   "Software Engineer",
   "Building Scalable Systems",
 ];
@@ -442,13 +443,13 @@ function SectionLabel({ text }) {
 }
 
 // ─── Ghost Button ────────────────────────────────────────────────────────────
-function HeroButton({ href, children, variant = 'ghost', onClick }) {
+function HeroButton({ href, children, variant = 'ghost', onClick, style = {}, whileHover = {} }) {
   const base = {
     display: 'inline-flex', alignItems: 'center', gap: 7,
     padding: '10px 22px', borderRadius: '10px',
     fontSize: '0.83rem', fontWeight: 500, letterSpacing: '0.04em',
     textDecoration: 'none', cursor: 'pointer', fontFamily: 'inherit',
-    transition: 'all 0.25s', border: 'none',
+    border: 'none',
   };
   const variants = {
     primary: {
@@ -466,15 +467,15 @@ function HeroButton({ href, children, variant = 'ghost', onClick }) {
   };
 
   return (
-    <a
+    <motion.a
       href={href || '#'}
       onClick={onClick}
-      style={{ ...base, ...variants[variant] }}
-      onMouseEnter={e => { e.currentTarget.style.transform = 'translateY(-2px)'; e.currentTarget.style.opacity = '0.9'; }}
-      onMouseLeave={e => { e.currentTarget.style.transform = 'translateY(0)'; e.currentTarget.style.opacity = '1'; }}
+      style={{ ...base, ...variants[variant], ...style }}
+      whileHover={{ y: -2, ...whileHover }}
+      transition={{ duration: 0.25 }}
     >
       {children}
-    </a>
+    </motion.a>
   );
 }
 
@@ -504,95 +505,145 @@ export const Main = () => {
         background: 'linear-gradient(to right, rgba(0,0,0,0.78) 0%, rgba(0,0,0,0.3) 55%, transparent 100%)',
       }} />
 
-      <section id="home">
-      {/* ══════════════════════════════════════
-          SECTION 1 — HERO
-      ══════════════════════════════════════ */}
-      <div style={{ position: 'absolute', inset: 0, zIndex: 20, pointerEvents: 'none' }}>
-        <div style={{
-          height: '100vh', display: 'flex', alignItems: 'center',
-          padding: '0 clamp(2rem, 8vw, 7rem)',
+    <section id="home">
+  <div style={{ position: 'absolute', inset: 0, zIndex: 20, pointerEvents: 'none' }}>
+    <div style={{
+      height: '100vh', display: 'flex', alignItems: 'center',
+      padding: '0 clamp(2rem, 8vw, 7rem)',
+    }}>
+      <motion.div
+        initial={{ opacity: 0, y: 32 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 1.1, ease: [0.22, 1, 0.36, 1] }}
+        style={{ maxWidth: 580, pointerEvents: 'auto' }}
+      >
+        {/* eyebrow — amber dot for contrast */}
+        <motion.p
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 0.2, duration: 0.8 }}
+          style={{
+            fontFamily: 'monospace', fontSize: '0.7rem', letterSpacing: '0.25em',
+            textTransform: 'uppercase', color: '#94a3b8', marginBottom: '0.8rem',
+            display: 'flex', alignItems: 'center', gap: '0.5rem',
+          }}
+        >
+          <span style={{
+            width: 6, height: 6, borderRadius: '50%', background: '#fbbf24',
+            boxShadow: '0 0 8px #fbbf24', display: 'inline-block',
+          }} />
+          Available for opportunities
+        </motion.p>
+
+        {/* name — gradient instead of flat blue */}
+        <h1 style={{
+          fontSize: 'clamp(2.2rem, 5.5vw, 4.2rem)',
+          fontWeight: 700, color: '#f8fafc',
+          lineHeight: 1.2, letterSpacing: '-0.02em',
+          marginBottom: '1rem',
         }}>
-          <motion.div
-            initial={{ opacity: 0, y: 32 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1.1, ease: [0.22, 1, 0.36, 1] }}
-            style={{ maxWidth: 560, pointerEvents: 'auto' }}
+          Hi, I am <br />
+          <span style={{
+            background: 'linear-gradient(90deg, #38bdf8 0%, #818cf8 55%, #c084fc 100%)',
+            WebkitBackgroundClip: 'text',
+            WebkitTextFillColor: 'transparent',
+            backgroundClip: 'text',
+            filter: 'drop-shadow(0 0 24px rgba(56,189,248,0.25))',
+          }}>
+            Pratham Kulkarni
+          </span>
+        </h1>
+
+        {/* typewriter — swap cursor/accent to violet for variety */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 0.5, duration: 0.7 }}
+          style={{ marginBottom: '1.4rem' }}
+        >
+          <TypewriterEffect accentColor="#a78bfa" />
+        </motion.div>
+
+        {/* bio — amber highlight instead of repeating blue */}
+        <motion.p
+          initial={{ opacity: 0, y: 16 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.65, duration: 0.8 }}
+          style={{
+            color: '#94a3b8', fontSize: 'clamp(0.9rem, 1.5vw, 1.05rem)',
+            lineHeight: 1.7, maxWidth: 500, marginBottom: '2.2rem',
+          }}
+        >
+          Passionate developer crafting elegant solutions to complex problems.
+          I specialise in high-performance full-stack apps, AI-powered pipelines,
+          and scalable systems — with{' '}
+          <span style={{ color: '#fbbf24', fontWeight: 600 }}>2+ years</span> of building things that matter.
+        </motion.p>
+
+        {/* CTA buttons — gradient primary + glow, glass secondary, outline ghost */}
+        <motion.div
+          initial={{ opacity: 0, y: 16 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.85, duration: 0.8 }}
+          style={{ display: 'flex', gap: 12, flexWrap: 'wrap' }}
+        >
+          <HeroButton
+            href="#projects"
+            style={{
+              background: 'linear-gradient(90deg, #38bdf8, #818cf8)',
+              color: '#0f172a',
+              fontWeight: 600,
+              boxShadow: '0 4px 24px rgba(56,189,248,0.35)',
+              border: 'none',
+            }}
+            whileHover={{
+              boxShadow: '0 8px 32px rgba(56,189,248,0.6)',
+              filter: 'brightness(1.1)',
+            }}
           >
-            {/* eyebrow */}
-            <motion.p
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 0.2, duration: 0.8 }}
-              style={{
-                fontFamily: 'monospace', fontSize: '0.65rem', letterSpacing: '0.32em',
-                textTransform: 'uppercase', color: '#22d3ee', marginBottom: '1.1rem',
-              }}
-            >
-              ✦ &nbsp;Available for opportunities
-            </motion.p>
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
+            View Projects
+          </HeroButton>
 
-            {/* name */}
-            <h1 style={{
-              fontSize: 'clamp(3.2rem, 9vw, 7.5rem)',
-              fontWeight: 700, color: '#f1f5f9',
-              lineHeight: 0.92, letterSpacing: '-0.028em',
-              marginBottom: '1.1rem',
-            }}>
-              Pratham<br />Kulkarni
-            </h1>
+          <HeroButton
+            href="#contact"
+            style={{
+              background: 'rgba(255,255,255,0.04)',
+              backdropFilter: 'blur(8px)',
+              border: '1px solid rgba(148,163,184,0.25)',
+              color: '#e2e8f0',
+            }}
+            whileHover={{
+              background: 'rgba(255,255,255,0.1)',
+              boxShadow: '0 0 20px rgba(255,255,255,0.15)',
+              color: '#ffffff'
+            }}
+          >
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+            Contact Me
+          </HeroButton>
 
-            {/* typewriter */}
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 0.5, duration: 0.7 }}
-              style={{ marginBottom: '1.3rem' }}
-            >
-              <TypewriterEffect />
-            </motion.div>
-
-            {/* bio */}
-            <motion.p
-              initial={{ opacity: 0, y: 16 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.65, duration: 0.8 }}
-              style={{
-                color: 'rgba(148,163,184,0.68)', fontSize: 'clamp(0.9rem, 1.8vw, 1.05rem)',
-                lineHeight: 1.78, maxWidth: 460, marginBottom: '2rem',
-              }}
-            >
-              Passionate developer crafting elegant solutions to complex problems.
-              I specialise in high-performance full-stack apps, AI-powered pipelines,
-              and scalable systems — with{' '}
-              <span style={{ color: '#e2e8f0', fontWeight: 500 }}>2+ years</span> of building things that matter.
-            </motion.p>
-
-            {/* CTA buttons */}
-            <motion.div
-              initial={{ opacity: 0, y: 16 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.85, duration: 0.8 }}
-              style={{ display: 'flex', gap: 10, flexWrap: 'wrap' }}
-            >
-              <HeroButton href="#projects" variant="primary">
-                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
-                View Projects
-              </HeroButton>
-              <HeroButton href="#contact" variant="cyan">
-                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
-                Contact Me
-              </HeroButton>
-              <HeroButton href="/resume.pdf" variant="ghost">
-                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
-                Resume
-              </HeroButton>
-            </motion.div>
-     
-          </motion.div>
-        </div>
-      </div>
-       </section>
+          <HeroButton
+            href="/myResume.pdf"
+            style={{
+              background: 'transparent',
+              border: '1px solid rgba(251,191,36,0.4)',
+              color: '#fbbf24',
+            }}
+            whileHover={{
+              background: 'rgba(251,191,36,0.1)',
+              boxShadow: '0 0 20px rgba(251,191,36,0.3)',
+              color: '#fcd34d'
+            }}
+          >
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+            Resume
+          </HeroButton>
+        </motion.div>
+      </motion.div>
+    </div>
+  </div>
+</section>
 
       {/* scroll hint */}
       <motion.div

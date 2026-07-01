@@ -187,7 +187,7 @@ export default function Footer() {
 
       <p className="text-sm text-slate-400 flex items-center gap-1.5">
         Built with React and 💖
-      </p>
+        </p>
 
       <p className="text-sm text-slate-500">
         B.Tech • IIIT Pune • Full Stack Developer
